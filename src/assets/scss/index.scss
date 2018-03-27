@@ -4,3 +4,15 @@
 body {
   background-color: white;
 }
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #aaa;
+  width: 100%;
+
+  td, th {
+    border-collapse: collapse;
+    border: 1px solid #aaa;
+    padding: 5px 10px;
+  }
+}
