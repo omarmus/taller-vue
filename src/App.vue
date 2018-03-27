@@ -1,23 +1,40 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div id="app" class="app">
+    <app-sidenav></app-sidenav>
+    <main class="app-main">
+      <app-navbar></app-navbar>
+      <router-view/>
+      <app-footer></app-footer>
+    </main>
   </div>
 </template>
 
 <script>
+import AppSidenav from './components/AppSidenav'
+import AppNavbar from './components/AppNavbar'
+import AppFooter from './components/AppFooter'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    AppSidenav,
+    AppNavbar,
+    AppFooter
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+@import './assets/scss/index.scss';
+
+.app {
+  display: grid;
+  grid-template-columns: 270px auto;
+  height: 100vh;
+
+  .app-main {
+    display: grid;
+    grid-template-rows: 70px auto 30px;
+  }
 }
 </style>
