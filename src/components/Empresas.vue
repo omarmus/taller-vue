@@ -15,20 +15,25 @@
     </div>
     <div class="lista" v-if="lista">
       <h2>Lista de empresas</h2>
-      <button @click="mostrarForm">Agregar</button>
+      <div class="btn-container">
+        <button @click="mostrarForm">Agregar</button>
+      </div>
       <table>
         <tr>
           <th>Nombre</th>
           <th>Dirección</th>
           <th>Acciones</th>
         </tr>
-        <tr v-for="item in empresas">
+        <tr v-for="item in empresas" :key="item.id">
           <td>{{ item.nombre }}</td>
           <td>{{ item.direccion }}</td>
           <td>
-            <button 
-              type="button" 
-              @click="eliminar(item.id)">Eliminar</button>
+            <button
+              type="button"
+              @click="eliminar(item.id)"
+            >
+              Eliminar
+            </button>
             <button
               type="button"
               @click="editar(item.id)">
@@ -72,12 +77,12 @@ export default {
           id: this.id,
           nombre: this.nombre,
           direccion: this.direccion
-        } 
+        }
         axios.put(`${url}empresas/${this.id}`, datos)
-        .then(respuesta => {
-          this.listar()
-          this.lista = true
-        })
+          .then(respuesta => {
+            this.listar()
+            this.lista = true
+          })
       } else {
         // crear
         let datos = {
@@ -102,14 +107,13 @@ export default {
     },
     editar (id) {
       axios.get(`${url}empresas/${id}`)
-      .then(respuesta => {
-        let empresa = respuesta.data
-        this.id = empresa.id
-        this.nombre = empresa.nombre
-        this.direccion = empresa.direccion
-        this.lista = false
-        console.log(respuesta.data)
-      })
+        .then(respuesta => {
+          let empresa = respuesta.data
+          this.id = empresa.id
+          this.nombre = empresa.nombre
+          this.direccion = empresa.direccion
+          this.lista = false
+        })
     },
     mostrarForm () {
       this.lista = false
@@ -120,7 +124,7 @@ export default {
   },
   watch: {
     'nombre': function (val) {
-      
+      console.log('Escuchando nombre', val)
     }
   }
 }

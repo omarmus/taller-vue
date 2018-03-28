@@ -1,13 +1,13 @@
 <template>
   <div class="hello">
-    <h1>{{ numero }}</h1>
-    <input type="text" v-model="numero">
+    <h1>Número: {{ numero }}</h1>
+    Ingrese un número <input type="text" v-model="numero">
     <h3 v-if="lista.length == 0">No hay elementos</h3>
     <ul v-else>
-      <li>Lista</li>
-      <li v-for="item in lista">{{ item }}</li>
+      <li>Lista de números</li>
+      <li v-for="item in lista" :key="item">{{ item }}</li>
     </ul>
-    <button @click="agregar">Agregar numero</button>
+    <button @click="agregar">Agregar número</button>
     <button @click="sumar">Sumar todo</button>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
       this.lista.push(numero)
     },
     sumar () {
-      let suma = 0;
+      let suma = 0
       for (let i in this.lista) {
         suma += parseInt(this.lista[i])
       }
